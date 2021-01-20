@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # crosstool-ng-build-toolchain/prebuild.sh
 #
@@ -11,10 +11,12 @@ echo "shell pwd:$DIR"
 CROSSTOLL_NG_VERSION="crosstool-ng-1.24.0"
 PACKAGE=$CROSSTOLL_NG_VERSION".tar.bz2"
 PACKAGE_URL="http://crosstool-ng.org/download/crosstool-ng/"$PACKAGE
-echo "PACKAGE_URL->$PACKAGE_URL"
+echo "PACKAGE_URL:$PACKAGE_URL"
 
-echo "wget -c $PACKAGE_URL -P $DIR/"
-wget -c $PACKAGE_URL -P $DIR/
+if [ ! -f "$PACKAGE" ]; then
+	echo "wget -c $PACKAGE_URL -P $DIR/"
+	wget -c $PACKAGE_URL -P $DIR/
+fi
 
 echo "tar -xvf PACKAGE -C $DIR/"
 tar -xvf $DIR/$PACKAGE -C $DIR/
@@ -28,6 +30,12 @@ mkdir $DIR/install
 
 echo "cd $DIR/$CROSSTOLL_NG_VERSION"
 cd $DIR/$CROSSTOLL_NG_VERSION
+if [ $? -eq 0 ]; then
+	echo "pwd:$PWD"
+else
+	cd $DIR/crosstool-ng
+	echo "pwd:$PWD"
+fi
 
 echo "./configure --prefix=$DIR/install"
 echo "make"
@@ -37,7 +45,7 @@ make
 make install
 
 export PATH="$PATH:$DIR/install/bin"
-echo "PATH->$PATH"
+echo "PATH:$PATH"
 
 ct-ng help
 ct-ng list-samples
