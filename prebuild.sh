@@ -8,7 +8,7 @@
 DIR="$( cd "$( dirname "$0"  )" && pwd  )"
 echo "shell pwd:$DIR"
 
-CROSSTOLL_NG_VERSION="crosstool-ng-1.24.0"
+CROSSTOLL_NG_VERSION="crosstool-ng-1.22.0"
 PACKAGE=$CROSSTOLL_NG_VERSION".tar.bz2"
 PACKAGE_URL="http://crosstool-ng.org/download/crosstool-ng/"$PACKAGE
 echo "PACKAGE_URL:$PACKAGE_URL"
@@ -50,13 +50,18 @@ echo "PATH:$PATH"
 ct-ng help
 ct-ng list-samples
 
+#ct-ng arm-cortex_a8-linux-gnueabi
+#ct-ng build /* start build */
+#mv $DIR/toolchain $DIR/arm-cortex_a8-linux-gnueabi-4.9.3
+#tar -cvjf $DIR/arm-cortex_a8-linux-gnueabi-4.9.3.tar.bz2 $DIR/arm-cortex_a8-linux-gnueabi-4.9.3
+
+#cd crosstool-ng
+#./ct-ng list-samples
 #./ct-ng arm-cortex_a8-linux-gnueabi
 #./ct-ng menuconfig
 #set Local tarballs directory:${CT_TOP_DIR}/../dl
 #set Prefix directory:${CT_TOP_DIR}/../toolchain
-#set Version of linux (3.4.113)
-
-#ct-ng build /* start build */
-#mv $DIR/toolchain $DIR/arm-cortex_a8-linux-gnueabi-8.3
-#tar -cvjf $DIR/arm-cortex_a8-linux-gnueabi-8.3.tar.b2z $DIR/arm-cortex_a8-linux-gnueabi-8.3
+#set Version of linux (3.2.72)
+#mv toolchain arm-cortex_a8-linux-gnueabi-4.9.3
+#tar -cvjf arm-cortex_a8-linux-gnueabi-4.9.3.tar.bz2 arm-cortex_a8-linux-gnueabi-4.9.3
 
